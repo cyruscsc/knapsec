@@ -1,8 +1,0 @@
-assignment1 7200 0.8
-assignment2 7200 0.8
-revision1 5400 0.7
-revision2 5400 0.7
-side-project1 3600 0.5
-side-project2 3600 0.5
-movie 7200 0.3
-game 7200 0.3

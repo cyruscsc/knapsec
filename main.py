@@ -1,81 +1,32 @@
-import sys
-
-from datetime import datetime, timedelta
-from schedule import Schedule
-from task import Task
-from timeslot import Timeslot
-
-
-TIMESLOT_LENGTH = 1800
+from scheduler import TaskSchedulingApp
 
 
 def main():
-    # check if correct number of arguments
-    if len(sys.argv) != 3:
-        sys.exit("Usage: python main.py <time_file> <task_file>")
+    tasks = [
+        {"name": "assignment1", "duration": 7200, "priority": 0.8},
+        {"name": "assignment2", "duration": 7200, "priority": 0.8},
+        {"name": "revision1", "duration": 5400, "priority": 0.7},
+        {"name": "revision2", "duration": 5400, "priority": 0.7},
+        {"name": "side_project1", "duration": 3600, "priority": 0.5},
+        {"name": "side_project2", "duration": 3600, "priority": 0.5},
+        {"name": "movie", "duration": 7200, "priority": 0.3},
+        {"name": "game", "duration": 7200, "priority": 0.3},
+    ]
 
-    # load timeslots and tasks
-    timeslots = load_timeslots(sys.argv[1])
-    tasks = load_tasks(sys.argv[2])
+    times = [
+        {"start": "2025-02-24T21:30", "end": "2025-02-24T23:00"},
+        {"start": "2025-02-25T21:00", "end": "2025-02-25T23:00"},
+        {"start": "2025-02-26T21:00", "end": "2025-02-26T23:00"},
+        {"start": "2025-02-27T21:00", "end": "2025-02-27T23:00"},
+        {"start": "2025-02-28T22:00", "end": "2025-03-01T00:00"},
+    ]
 
-    schedule = Schedule(tasks, timeslots, TIMESLOT_LENGTH)
-    schedule.overview()
+    # Run the optimization
+    schedule = TaskSchedulingApp.optimize_schedule(tasks, times)
+    # print(schedule)
 
-    for task in schedule.tasks:
-        print(f"{task.name} requires {schedule.required_timeslots(task)} timeslots")
-
-
-def load_timeslots(file_path):
-    timeslots = []
-
-    # read file line by line
-    with open(file_path, "r") as f:
-        lines = f.readlines()
-
-    # extract timeslots
-    for line in lines:
-        timeslots += extract_timeslots(line)
-
-    return timeslots
-
-
-def extract_timeslots(line):
-    # extract start and end time
-    [start, end] = line.split()
-    start = datetime.strptime(start, "%Y-%m-%dT%H:%M")
-    end = datetime.strptime(end.strip(), "%Y-%m-%dT%H:%M")
-
-    # break time into 30 minute timeslots
-    timeslots = []
-    while start < end:
-        timeslot = Timeslot(start, start + timedelta(minutes=30))
-        timeslots.append(timeslot)
-        start += timedelta(minutes=30)
-
-    return timeslots
-
-
-def load_tasks(file_path):
-    tasks = []
-
-    # read file line by line
-    with open(file_path, "r") as f:
-        lines = f.readlines()
-
-    # extract tasks
-    for line in lines:
-        tasks.append(extract_tasks(line))
-
-    return tasks
-
-
-def extract_tasks(line):
-    # extract task name, duration, and priority
-    [name, duration, priority] = line.split()
-    duration = int(duration)
-    priority = float(priority)
-
-    return Task(name, duration, priority)
+    # Print the results
+    TaskSchedulingApp.print_schedule(schedule)
 
 
 if __name__ == "__main__":
