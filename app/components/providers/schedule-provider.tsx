@@ -9,15 +9,15 @@ interface ScheduleProviderProps {
 }
 
 export const ScheduleProvider = ({ children }: ScheduleProviderProps) => {
-  const [schedule, setSchedule] = useState<ScheduleResponse | null>(() => {
+  const [schedule, setSchedule] = useState<ScheduleResponse | null>(null)
+
+  useEffect(() => {
     const savedSchedule = localStorage.getItem('schedule')
 
     if (savedSchedule) {
-      return JSON.parse(savedSchedule)
+      setSchedule(JSON.parse(savedSchedule))
     }
-
-    return null
-  })
+  }, [])
 
   useEffect(() => {
     localStorage.setItem('schedule', JSON.stringify(schedule))

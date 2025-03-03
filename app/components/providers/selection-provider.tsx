@@ -2,6 +2,7 @@
 
 import { SelectionContext } from '@/contexts/selection-context'
 import { Selection } from '@/types/timetable'
+import { replacer, reviver } from '@/utils/json'
 import { ReactNode, useEffect, useState } from 'react'
 
 interface SelectionProviderProps {
@@ -9,18 +10,18 @@ interface SelectionProviderProps {
 }
 
 export const SelectionProvider = ({ children }: SelectionProviderProps) => {
-  const [selection, setSelection] = useState<Selection>(() => {
+  const [selection, setSelection] = useState<Selection | null>(null)
+
+  useEffect(() => {
     const savedSelection = localStorage.getItem('selection')
 
     if (savedSelection) {
-      return JSON.parse(savedSelection)
+      setSelection(JSON.parse(savedSelection, reviver))
     }
-
-    return new Map()
-  })
+  }, [])
 
   useEffect(() => {
-    localStorage.setItem('selection', JSON.stringify(selection))
+    localStorage.setItem('selection', JSON.stringify(selection, replacer))
   }, [selection])
 
   return (

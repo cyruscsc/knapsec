@@ -9,15 +9,15 @@ interface TasksProviderProps {
 }
 
 export const TasksProvider = ({ children }: TasksProviderProps) => {
-  const [tasks, setTasks] = useState<Task[]>(() => {
+  const [tasks, setTasks] = useState<Task[]>([])
+
+  useEffect(() => {
     const savedTasks = localStorage.getItem('tasks')
 
     if (savedTasks) {
-      return JSON.parse(savedTasks)
+      setTasks(JSON.parse(savedTasks))
     }
-
-    return []
-  })
+  }, [])
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks))
