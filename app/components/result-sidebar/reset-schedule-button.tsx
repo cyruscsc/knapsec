@@ -14,10 +14,7 @@ export const ResetScheduleButton = () => {
   }
 
   return (
-    <button
-      onClick={resetSchedule}
-      className='w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600 mt-4'
-    >
+    <button onClick={resetSchedule} className='btn'>
       Reset Schedule
     </button>
   )

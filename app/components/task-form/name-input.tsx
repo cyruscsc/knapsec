@@ -9,7 +9,7 @@ export const NameInput = () => {
     <input
       type='text'
       placeholder='Task name'
-      className='w-full p-2 border rounded'
+      className='input'
       value={newTask.name}
       onChange={(e) => setNewTask({ ...newTask, name: e.target.value })}
     />

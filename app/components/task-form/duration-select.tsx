@@ -6,10 +6,10 @@ export const DurationSelect = () => {
   const { newTask, setNewTask } = useNewTask()
 
   return (
-    <div className='flex items-center gap-2'>
-      <label className='text-sm'>Duration:</label>
+    <div className='sidebar-field'>
+      <label>Duration:</label>
       <select
-        className='p-1 border rounded flex-1'
+        className='input'
         value={newTask.duration}
         onChange={(e) =>
           setNewTask({

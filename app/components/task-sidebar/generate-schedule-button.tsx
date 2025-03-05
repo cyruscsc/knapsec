@@ -49,12 +49,12 @@ export const GenerateScheduleButton = () => {
   }
 
   return (
-    <div className='mb-4'>
-      <p className='mb-2'>Selected time slots: {selection?.size}</p>
+    <div className='sidebar-group'>
+      <p className='text-xs'>Selected time slots: {selection?.size}</p>
       <button
         onClick={submitSchedule}
         disabled={isLoading || selection?.size === 0 || tasks.length === 0}
-        className='w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed'
+        className='btn'
       >
         {isLoading ? 'Generating Schedule...' : 'Generate Schedule'}
       </button>

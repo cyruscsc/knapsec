@@ -5,7 +5,7 @@ import { AddTaskButton } from './add-task-button'
 
 export const TaskForm = () => {
   return (
-    <div className='space-y-2 mb-4'>
+    <div className='sidebar-group'>
       <NameInput />
       <DurationSelect />
       <PriorityRange />

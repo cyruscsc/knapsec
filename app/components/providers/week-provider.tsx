@@ -15,7 +15,7 @@ export const WeekProvider = ({ children }: WeekProviderProps) => {
     const day = addDays(weekStart, i)
     return {
       date: day,
-      name: format(day, 'EEEE'),
+      name: format(day, 'EEE'),
       formattedDate: format(day, 'MMM d'),
     }
   })

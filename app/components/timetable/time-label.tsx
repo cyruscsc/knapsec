@@ -4,7 +4,7 @@ interface TimeLabelProps {
 
 export const TimeLabel = ({ time }: TimeLabelProps) => {
   return (
-    <div className='row-span-2 border-b border-r p-2 flex items-center justify-center'>
+    <div className='timetable-heading row-span-2 flex items-center justify-center p-2 timetable-border border-r'>
       {time}
     </div>
   )

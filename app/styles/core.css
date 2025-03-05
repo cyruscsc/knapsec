@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+@layer components {
+  .app {
+    @apply bg-mist-900 text-mist-100 text-sm;
+  }
+
+  .btn {
+    @apply bg-sirocco-500 text-mist-100 w-full cursor-pointer rounded-lg py-2 text-sm transition-colors duration-150;
+    @apply hover:bg-sirocco-600;
+    @apply active:bg-sirocco-700;
+    @apply disabled:bg-mist-900 disabled:text-mist-700 disabled:cursor-not-allowed;
+  }
+
+  .input {
+    @apply border-sirocco-400 ring-sirocco-400 w-full rounded-lg border p-2 text-sm transition-all duration-150;
+    @apply focus:ring focus:outline-none;
+  }
+
+  .slider {
+    @apply bg-sirocco-400 h-1 w-full cursor-pointer appearance-none rounded-full;
+  }
+}

@@ -5,5 +5,5 @@ interface TaskCardsContainerProps {
 }
 
 export const TaskCardsContainer = ({ children }: TaskCardsContainerProps) => {
-  return <div className='space-y-2 mb-4'>{children}</div>
+  return <div className='sidebar-group'>{children}</div>
 }

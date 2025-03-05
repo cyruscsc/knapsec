@@ -9,7 +9,6 @@ export const AddTaskButton = () => {
 
   // Add a new task to the list
   const addTask = () => {
-    if (newTask.name.trim() === '') return
     setTasks([...tasks, { ...newTask }])
     setNewTask({ name: '', duration: 1800, priority: 0.5 })
   }
@@ -17,7 +16,8 @@ export const AddTaskButton = () => {
   return (
     <button
       onClick={addTask}
-      className='w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600'
+      disabled={newTask.name.trim() === ''}
+      className='btn'
     >
       Add Task
     </button>

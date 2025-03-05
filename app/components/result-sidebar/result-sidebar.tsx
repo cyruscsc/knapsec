@@ -1,17 +1,17 @@
 'use client'
 
-import { useSchedule } from '@/hooks/use-schedule'
+import { ResetScheduleButton } from './reset-schedule-button'
 import { StatisticsList } from './statistics-list'
 import { UnscheduledTasksList } from './unscheduled-tasks-list'
-import { ResetScheduleButton } from './reset-schedule-button'
+import { useSchedule } from '@/hooks/use-schedule'
 
 export const ResultSidebar = () => {
   const { schedule } = useSchedule()
 
   return (
     schedule && (
-      <div className='bg-white p-4 rounded-lg shadow-md'>
-        <h2 className='text-xl font-semibold mb-4'>Schedule Results</h2>
+      <div className='sidebar'>
+        <h2 className='sidebar-heading'>Schedule Results</h2>
 
         <StatisticsList />
         <UnscheduledTasksList />

@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+@layer components {
+  .sidebar {
+    @apply bg-mist-800 shadow-mist-950 flex flex-col gap-4 rounded-xl p-4 shadow-sm;
+  }
+
+  .sidebar-heading {
+    @apply text-lg font-medium;
+  }
+
+  .sidebar-subheading {
+    @apply text-sm font-medium;
+  }
+
+  .sidebar-group {
+    @apply flex flex-col gap-2;
+  }
+
+  .sidebar-field {
+    @apply grid grid-cols-[1fr_2fr] items-center;
+  }
+
+  .sidebar-card {
+    @apply bg-mist-700 relative flex items-center justify-between overflow-hidden rounded-xl p-2;
+  }
+}

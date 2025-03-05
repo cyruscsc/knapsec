@@ -18,20 +18,19 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
     updatedTasks.splice(index, 1)
     setTasks(updatedTasks)
   }
+
   return (
-    <div
-      key={index}
-      className='flex items-center justify-between bg-gray-50 p-2 rounded'
-    >
-      <div>
-        <span className='font-medium'>{task.name}</span>
-        <div className='text-sm text-gray-600'>
+    <div key={index} className='sidebar-card'>
+      <div className='ms-2'>
+        <div className='bg-sirocco-400 absolute top-0 bottom-0 left-0 w-2'></div>
+        <span>{task.name}</span>
+        <div className='text-xs'>
           {formatDuration(task.duration)} · Priority: {task.priority}
         </div>
       </div>
       <button
         onClick={() => removeTask(index)}
-        className='text-red-500 hover:text-red-700'
+        className='text-sirocco-400 hover:text-sirocco-500 cursor-pointer transition-colors duration-150'
       >
         ✕
       </button>

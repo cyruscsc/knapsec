@@ -9,13 +9,12 @@ export const UnscheduledTasksList = () => {
   return (
     schedule &&
     schedule.unscheduled_tasks.length > 0 && (
-      <div className='mb-4'>
-        <h3 className='font-semibold'>Unscheduled Tasks</h3>
-        <ul className='text-sm'>
+      <div className='sidebar-group'>
+        <h3 className='sidebar-subheading'>Unscheduled Tasks</h3>
+        <ul className='text-xs'>
           {schedule.unscheduled_tasks.map((task, index) => (
-            <li key={index} className='py-1'>
-              <span className='font-medium'>{task.name}</span> (
-              {formatDuration(task.duration)})
+            <li key={index}>
+              <span>{task.name}</span> ({formatDuration(task.duration)})
             </li>
           ))}
         </ul>

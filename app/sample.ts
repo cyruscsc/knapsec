@@ -68,6 +68,11 @@ export const sampleResponse = {
         duration: 7200,
         priority: 0.3,
       },
+      {
+        name: 'dramma',
+        duration: 5400,
+        priority: 0.3,
+      },
     ],
     total_priority_achieved: 4.3,
     time_utilized: 34200,

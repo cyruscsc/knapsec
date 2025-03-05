@@ -1,17 +1,17 @@
 'use client'
 
-import { Fragment } from 'react'
-import { useSelection } from '@/hooks/use-selection'
+import { Cell } from './cell'
+import { HeaderRow } from './header-row'
+import { TimeLabel } from './time-label'
 import { useSchedule } from '@/hooks/use-schedule'
+import { useSelection } from '@/hooks/use-selection'
 import { useWeek } from '@/hooks/use-week'
 import {
   getCellKey,
   getScheduledTaskForCell,
   isTaskStart,
 } from '@/utils/timetable'
-import { HeaderRow } from './header-row'
-import { Cell } from './cell'
-import { TimeLabel } from './time-label'
+import { Fragment } from 'react'
 
 export const Timetable: React.FC = () => {
   const { selection, setSelection } = useSelection()
@@ -39,9 +39,9 @@ export const Timetable: React.FC = () => {
   }
 
   return (
-    <div className='lg:w-3/4 overflow-auto'>
+    <div className='overflow-auto lg:w-3/4'>
       <div className='min-w-[900px]'>
-        <div className='grid grid-cols-[100px_repeat(7,1fr)] border-t border-l'>
+        <div className='grid grid-cols-8'>
           <HeaderRow />
 
           {/* Time slots */}

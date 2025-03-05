@@ -8,9 +8,9 @@ export const StatisticsList = () => {
 
   return (
     schedule && (
-      <div className='mb-4'>
-        <h3 className='font-semibold'>Statistics</h3>
-        <div className='grid grid-cols-2 gap-2 text-sm'>
+      <div className='sidebar-group'>
+        <h3 className='sidebar-subheading'>Statistics</h3>
+        <div className='grid grid-cols-2 text-xs'>
           <div>Priority Achieved:</div>
           <div>{schedule.total_priority_achieved.toFixed(1)}</div>
 
