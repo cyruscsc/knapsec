@@ -21,7 +21,7 @@ export const Timetable: React.FC = () => {
   // Generate time slots
   const timeSlots = Array.from({ length: 24 }, (_, i) => {
     const hour = i.toString().padStart(2, '0')
-    return `${hour}:00`
+    return `${hour}`
   })
 
   // Toggle cell selection
@@ -39,83 +39,80 @@ export const Timetable: React.FC = () => {
   }
 
   return (
-    <div className='overflow-auto lg:w-3/4'>
-      <div className='min-w-[900px]'>
-        <div className='grid grid-cols-8'>
-          <HeaderRow />
+    <div className='relative flex-1 overflow-auto'>
+      <HeaderRow />
+      <div className='grid grid-cols-[2rem_repeat(7,1fr)]'>
+        {/* Time slots */}
+        {timeSlots.map((time, timeIndex) => (
+          <Fragment key={timeIndex}>
+            {/* Time label */}
+            <TimeLabel time={time} />
 
-          {/* Time slots */}
-          {timeSlots.map((time, timeIndex) => (
-            <Fragment key={timeIndex}>
-              {/* Time label */}
-              <TimeLabel time={time} />
+            {/* First 30 minutes */}
+            {days.map((_, dayIndex) => {
+              const cellKey = getCellKey(dayIndex, timeIndex, 0)
+              const isSelected = selection?.has(cellKey)
+              const task = getScheduledTaskForCell(
+                dayIndex,
+                timeIndex,
+                0,
+                schedule,
+                weekStart
+              )
+              const isStart = isTaskStart(
+                dayIndex,
+                timeIndex,
+                0,
+                schedule,
+                weekStart
+              )
 
-              {/* First 30 minutes */}
-              {days.map((_, dayIndex) => {
-                const cellKey = getCellKey(dayIndex, timeIndex, 0)
-                const isSelected = selection?.has(cellKey)
-                const task = getScheduledTaskForCell(
-                  dayIndex,
-                  timeIndex,
-                  0,
-                  schedule,
-                  weekStart
-                )
-                const isStart = isTaskStart(
-                  dayIndex,
-                  timeIndex,
-                  0,
-                  schedule,
-                  weekStart
-                )
+              return (
+                <Cell
+                  key={`${dayIndex}-${timeIndex}-0`}
+                  task={task}
+                  isSelected={isSelected}
+                  isStart={isStart}
+                  handleClick={() =>
+                    !schedule && toggleSelection(dayIndex, timeIndex, 0)
+                  }
+                />
+              )
+            })}
 
-                return (
-                  <Cell
-                    key={`${dayIndex}-${timeIndex}-0`}
-                    task={task}
-                    isSelected={isSelected}
-                    isStart={isStart}
-                    handleClick={() =>
-                      !schedule && toggleSelection(dayIndex, timeIndex, 0)
-                    }
-                  />
-                )
-              })}
+            {/* Second 30 minutes */}
+            {days.map((_, dayIndex) => {
+              const cellKey = getCellKey(dayIndex, timeIndex, 30)
+              const isSelected = selection?.has(cellKey)
+              const task = getScheduledTaskForCell(
+                dayIndex,
+                timeIndex,
+                30,
+                schedule,
+                weekStart
+              )
+              const isStart = isTaskStart(
+                dayIndex,
+                timeIndex,
+                30,
+                schedule,
+                weekStart
+              )
 
-              {/* Second 30 minutes */}
-              {days.map((_, dayIndex) => {
-                const cellKey = getCellKey(dayIndex, timeIndex, 30)
-                const isSelected = selection?.has(cellKey)
-                const task = getScheduledTaskForCell(
-                  dayIndex,
-                  timeIndex,
-                  30,
-                  schedule,
-                  weekStart
-                )
-                const isStart = isTaskStart(
-                  dayIndex,
-                  timeIndex,
-                  30,
-                  schedule,
-                  weekStart
-                )
-
-                return (
-                  <Cell
-                    key={`${dayIndex}-${timeIndex}-30`}
-                    task={task}
-                    isSelected={isSelected}
-                    isStart={isStart}
-                    handleClick={() =>
-                      !schedule && toggleSelection(dayIndex, timeIndex, 30)
-                    }
-                  />
-                )
-              })}
-            </Fragment>
-          ))}
-        </div>
+              return (
+                <Cell
+                  key={`${dayIndex}-${timeIndex}-30`}
+                  task={task}
+                  isSelected={isSelected}
+                  isStart={isStart}
+                  handleClick={() =>
+                    !schedule && toggleSelection(dayIndex, timeIndex, 30)
+                  }
+                />
+              )
+            })}
+          </Fragment>
+        ))}
       </div>
     </div>
   )

@@ -8,7 +8,7 @@ interface CellProps {
 export const Cell = ({ task, isSelected, isStart, handleClick }: CellProps) => {
   return (
     <div
-      className={`timetable-border h-8 border-r ${
+      className={`timetable-border h-6 ${
         task
           ? `bg-sirocco-${Math.round(task.priority * 10)}00 text-white`
           : isSelected

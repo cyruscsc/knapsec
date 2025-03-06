@@ -5,5 +5,5 @@ interface TaskCardsContainerProps {
 }
 
 export const TaskCardsContainer = ({ children }: TaskCardsContainerProps) => {
-  return <div className='sidebar-group'>{children}</div>
+  return <div className='sidebar-group flex-1 overflow-auto'>{children}</div>
 }

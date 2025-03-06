@@ -5,5 +5,9 @@ interface MainContainerProps {
 }
 
 export const MainContainer = ({ children }: MainContainerProps) => {
-  return <div className='flex flex-col lg:flex-row gap-6'>{children}</div>
+  return (
+    <div className='flex flex-col-reverse gap-6 overflow-auto md:flex-row'>
+      {children}
+    </div>
+  )
 }

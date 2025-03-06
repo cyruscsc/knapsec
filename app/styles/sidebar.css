@@ -2,7 +2,7 @@
 
 @layer components {
   .sidebar {
-    @apply bg-mist-800 shadow-mist-950 flex flex-col gap-4 rounded-xl p-4 shadow-sm;
+    @apply bg-mist-800 shadow-mist-950 flex flex-col gap-4 rounded-xl p-4 shadow-xs md:h-full md:w-60;
   }
 
   .sidebar-heading {
@@ -22,6 +22,6 @@
   }
 
   .sidebar-card {
-    @apply bg-mist-700 relative flex items-center justify-between overflow-hidden rounded-xl p-2;
+    @apply bg-mist-700 relative flex min-h-12 items-center justify-between overflow-hidden rounded-xl p-2;
   }
 }
